@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <style>
+
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(117,156,255,1);
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+.head {
+  color: rgba(255,255,255,1);
+  top: 63px;
+  left: 375px;
+  font-family: Pacifico;
+  font-weight: Regular;
+  font-size: 144px;
+  opacity: 1;
+text-align: center;
+}
+
+
+
+.box-container {
+  width: 1024px;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+display: grid;
+row-gap: 23px;
+column-gap: 23px;
+grid-template-columns: 1fr 1fr;
+
+margin-bottom: 40px!important;
+}
+
+
+.custom
+{
+  grid-template-rows: 200px 200px;
+  grid-template-areas:
+  "gr wp "
+  "ph wp ";
+}
+
+.gr{
+  grid-area: gr;
+}
+.ph{
+  grid-area: ph;
+}
+.wp{
+  grid-area: wp;
+}
+
+
+.box{
+  background: #fff;
+  border-radius: 11px;
+  padding: 15px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  height: -webkit-fill-available;
+  align-content: center;
+  cursor: pointer;
+
+}
+
+.link {
+  height: fit-content;
+  text-decoration: none;
+
+  background: #fff;
+  border-radius: 11px;
+  padding: 15px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  align-content: center;
+}
+
+.link span{
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 42px;
+
+color: #383838;
+
+}
+
+.box img{
+  max-width: 45%;
+  align-content: center;
+  justify-self: center;
+  object-fit: cover;
+}
+
+
+
+
+	</style>
+    <title>Document</title>
+</head>
+
+<body>
+
+
+        
+        <span class="head">Kubernetes</span>
+        
+        
+        
+        <div class="box-container custom">
+
+                <a href="https://192.168.99.166:5000/" class="box gr"><img src="images/v1_26.png" alt=""></a>
+                <a href="http://192.168.99.166:3000/" class="box ph" ><img src="images/v1_35.png" alt=""></a>
+                <a href="https://192.168.99.166:5050/" class="box wp"><img src="images/wp.png" alt=""></a> 
+
+        </div>
+
+
+
+
+        <div class="box-container">
+            <a href="https://192.168.99.166/phpmyadmin" class="link">
+                <span >/phpmyadmin</span>
+            </a>
+            <a class="link" href="https://192.168.99.166/wordpress">
+                <span >/wordpress</span>
+            </a>
+        </div>
+  
+</body>
+
+</html>

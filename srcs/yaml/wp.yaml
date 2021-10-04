@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wp-service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: minikube
+  labels:
+    app: wp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5050
+      name: wp
+      targetPort: 5050
+  selector:
+    app: wp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp
+  labels:
+    app: wp
+spec:
+  selector:
+    matchLabels:
+      app: wp
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+        - name: wp-container
+          image: wp-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5050
+          volumeMounts:
+            - mountPath: "/var/www/localhost/htdocs/"
+              name: wp-pv
+      volumes:
+        - name: wp-pv
+          persistentVolumeClaim:
+            claimName: wp-pvc
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-pv
+  labels:
+    type: local
+spec:
+  storageClassName: fast
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/www/localhost/htdocs/"
+  claimRef:
+    name: wp-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pvc
+  labels:
+    app: wp
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
